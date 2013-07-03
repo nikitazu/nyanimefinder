@@ -100,7 +100,10 @@ describe Nyanimefinder::MyAnimeList do
       :type       =>  "TV", 
       :series     =>  "25", 
       :image_url  =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin/pic&pid=47347",
-      :airing     =>  "currently"
+      :airing     =>  "currently",
+      :other_titles => { 
+        "English" => "Attack on Titan"
+      }
     }])
   end
 end

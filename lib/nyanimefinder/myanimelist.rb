@@ -74,6 +74,11 @@ module Nyanimefinder
         airing: match[3].split(' ').first.downcase
       }
       
+      other_title = /English: (.+)Japanese:/.match(data)
+      if other_title != nil then
+        anime[:other_titles] = { "English" => other_title[1] }
+      end
+      
       return [anime]
     end
 
