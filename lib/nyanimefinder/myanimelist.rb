@@ -76,16 +76,6 @@ module Nyanimefinder
       
       return [anime]
     end
-    
-    PLAINDATA = <<-PLAINDATA
 
-    	Information
-    	Type: OVA
-    	Episodes: 3
-	
-    	Status: Finished Airing
-    	Aired: Oct  25, 1998 to Mar  25, 1999
-    	Producers: J.C. Staff, Bandai Visual, ADV FilmsLGenres:
-    PLAINDATA
   end
 end
