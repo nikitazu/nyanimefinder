@@ -10,8 +10,8 @@ describe Nyanimefinder::MyAnimeList do
   it 'slayers should be found... obviously' do
     finder = Nyanimefinder::MyAnimeList.new
     result = finder.search_anime 'slayers'
-    result.should_not eql(nil)
-    result.map {|anime| anime[:title] }.should eql([
+    result.should_not be_nil
+    result.map { |anime| anime[:title] }.should eql([
       'Slayers', 
       'Slayers Evolution-R', 
       'Slayers Excellent', 
@@ -26,5 +26,12 @@ describe Nyanimefinder::MyAnimeList do
       'Slayers: The Motion Picture',
       'Tenpou Ibun Ayakashi Ayashi', # why?
       ])
+  end
+  
+  it 'slayers excellent should be found as a single one' do
+    finder = Nyanimefinder::MyAnimeList.new
+    result = finder.search_anime 'slayers+excellent'
+    result.should_not be_nil
+    result.map { |anime| anime[:title] }.should eql(['Slayers Excellent'])
   end
 end
