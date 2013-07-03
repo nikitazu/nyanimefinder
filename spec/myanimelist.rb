@@ -3,14 +3,14 @@ require 'nyanimefinder/myanimelist'
 HERE = File.dirname(File.expand_path(__FILE__))
 
 describe Nyanimefinder::MyAnimeList do
-  it 'abracadabra should not be found' do
+  it 'not results should be parsed as nil' do
     html = File.read File.join HERE, 'myanimelist_nothing.html'
     finder = Nyanimefinder::MyAnimeList.new
     result = finder.parse_multi_result html
     result.should be_nil
   end
   
-  it 'slayers should be found... obviously' do
+  it 'many results should be parsed as list of maps' do
     html = File.read File.join HERE, 'myanimelist_multi.html'
     finder = Nyanimefinder::MyAnimeList.new
     result = finder.parse_multi_result html
@@ -70,7 +70,7 @@ describe Nyanimefinder::MyAnimeList do
     ])
   end
   
-  it 'slayers excellent should be found as a single one' do
+  it 'single result should be parsed as list of maps too' do
     # myanimelist.net behaves smartassy for its users
     # when result is single item it opens anime main page
     # instead of search results list
@@ -86,6 +86,21 @@ describe Nyanimefinder::MyAnimeList do
       :series     =>  "3", 
       :image_url  =>  "http://myanimelist.net/anime/1171/Slayers_Excellent/pic&pid=34993",
       :airing     =>  "finished"
+    }])
+  end
+  
+  it 'single result should be parsed as list of maps with additional info' do
+    html = File.read File.join HERE, 'myanimelist_single2.html'
+    finder = Nyanimefinder::MyAnimeList.new
+    result = finder.parse_single_result html
+    result.should_not be_nil
+    result.should eql([{
+      :web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
+      :title      =>  "Shingeki no Kyojin",
+      :type       =>  "TV", 
+      :series     =>  "25", 
+      :image_url  =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin/pic&pid=47347",
+      :airing     =>  "currently"
     }])
   end
 end
