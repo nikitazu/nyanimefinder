@@ -63,7 +63,7 @@ module Nyanimefinder
       image_url = content.css('div#content>table>tr>td>div>a')[0].attr('href')
       web_url = image_url.gsub /\/pic&pid=\d+/i, ''
       
-      match = /Type: (\w+)\s+Episodes: (\d+)\s+Status: (Finished Airing|Airing|Not Yet Aired)/.match(data)
+      match = /Type: (\w+)\s+Episodes: (\d+)\s+Status: (Finished Airing|Currently Airing|Not Yet Aired)/.match(data)
       
       anime = {
         web_url: web_url,
