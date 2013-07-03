@@ -25,23 +25,20 @@ module Nyanimefinder
       doc  = Nokogiri::HTML(html)
       
       result = doc.css('html>body table')[6]
-      animes = []
-      rows = result.css('tr')
-      rows = rows[5, rows.count - 6]
+      rows = result.css('tr')         # meaningfull rows start at index 5
+      rows = rows[5, rows.count - 6]  # and last one is useless
       
-      if rows == nil # nothing was found
+      if rows == nil                  # nothing was found, easy
         return nil
       end
       
+      animes = []
       rows.each do |row|
         link = row.css('td a')
         url = link.attr('href')
         web_url = "http://www.world-art.ru/#{url}"
         
         match = /\((\d{4}), (\p{Word}+), (\p{Any}+)\)/.match(link.text)
-        title = link.text
-        year = match[1]
-        country = match[2]
         type_and_series = match[3]
         
         type = ''
@@ -55,20 +52,18 @@ module Nyanimefinder
           if tsmatch != nil then
             type = tsmatch[1]
             series = tsmatch[2]
-            
             if type == 'ТВ' then type = 'TV' end
           end
         end
         
         animes << {
           :web_url    => web_url,
-          :title      => title,
+          :title      => link.text,
           :type       => type,
           :series     => series,
-          :year       => year,
-          :country    => country
+          :year       => match[1],
+          :country    => match[2]
         }
-        
       end
       
       return animes
