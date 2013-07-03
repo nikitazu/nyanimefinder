@@ -29,6 +29,10 @@ describe Nyanimefinder::MyAnimeList do
   end
   
   it 'slayers excellent should be found as a single one' do
+    # myanimelist.net behaves smartassy for its users
+    # when result is single item it opens anime main page
+    # instead of search results list
+    
     finder = Nyanimefinder::MyAnimeList.new
     result = finder.search_anime 'slayers+excellent'
     result.should_not be_nil
