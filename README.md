@@ -1,6 +1,9 @@
 # Nyanimefinder
 
-TODO: Write a gem description
+Little anime scraper.
+Allows to make queries to different anime
+web-databases via http, and parse results
+to simple data structures with Nokogiri.
 
 ## Installation
 
