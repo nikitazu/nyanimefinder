@@ -79,6 +79,12 @@ describe Nyanimefinder::MyAnimeList do
     finder = Nyanimefinder::MyAnimeList.new
     result = finder.parse_single_result html
     result.should_not be_nil
-    result.map { |anime| anime[:title] }.should eql(['Slayers Excellent'])
+    result.should eql([{
+      :web_url    =>  "http://myanimelist.net/anime/1171/Slayers_Excellent", 
+      :title      =>  "Slayers Excellent", 
+      :type       =>  "OVA", 
+      :series     =>  "3", 
+      :image_url  =>  "http://myanimelist.net/anime/1171/Slayers_Excellent/pic&pid=34993"
+    }])
   end
 end

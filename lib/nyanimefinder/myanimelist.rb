@@ -56,13 +56,35 @@ module Nyanimefinder
     
     def parse_single_result html
       doc  = Nokogiri::HTML(html)
-      title = doc.css('html>body>div#myanimelist>div#contentWrapper>h1')[0].text.gsub! /^Ranked #\d+/i, ''
+      
+      content = doc.css('html>body>div#myanimelist>div#contentWrapper')
+      title = content.css('h1')[0].text.gsub! /^Ranked #\d+/i, ''
+      data = content.css('div#content>table>tr>td')[0].text
+      image_url = content.css('div#content>table>tr>td>div>a')[0].attr('href')
+      web_url = image_url.gsub /\/pic&pid=\d+/i, ''
+      
+      match = /Type: (\w+)\s+Episodes: (\d+)\s/.match(data)
       
       anime = {
-        title: title
+        web_url: web_url,
+        title: title,
+        type: match[1],#/Type: (\w+)\s/.match(data)[1],
+        series: match[2],#/Episodes: (\d+)\s/.match(data)[1],
+        image_url: image_url
       }
       
       return [anime]
     end
+    
+    PLAINDATA = <<-PLAINDATA
+
+    	Information
+    	Type: OVA
+    	Episodes: 3
+	
+    	Status: Finished Airing
+    	Aired: Oct  25, 1998 to Mar  25, 1999
+    	Producers: J.C. Staff, Bandai Visual, ADV FilmsLGenres:
+    PLAINDATA
   end
 end
