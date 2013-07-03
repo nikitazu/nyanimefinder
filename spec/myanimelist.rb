@@ -84,7 +84,8 @@ describe Nyanimefinder::MyAnimeList do
       :title      =>  "Slayers Excellent", 
       :type       =>  "OVA", 
       :series     =>  "3", 
-      :image_url  =>  "http://myanimelist.net/anime/1171/Slayers_Excellent/pic&pid=34993"
+      :image_url  =>  "http://myanimelist.net/anime/1171/Slayers_Excellent/pic&pid=34993",
+      :airing     =>  "finished"
     }])
   end
 end
