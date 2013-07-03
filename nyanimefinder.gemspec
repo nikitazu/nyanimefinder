@@ -8,8 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = Nyanimefinder::VERSION
   spec.authors       = ["Nikita B. Zuev"]
   spec.email         = ["nikitazu@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  
+  spec.description   = %q{Various web scrapers searching for anime descriptions, 
+                          and providing them in parseable format.}
+                          
+  spec.summary       = %q{see description...}
+  
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,4 +24,10 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  
+  # unit testing
+  spec.add_development_dependency 'rspec', '~> 2.6'
+  
+  # web scraping
+  spec.add_dependency 'nokogiri', '~>1.5'
 end
