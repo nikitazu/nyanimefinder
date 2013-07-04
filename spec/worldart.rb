@@ -44,12 +44,12 @@ describe Nyanimefinder::WorldArt do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://myanimelist.net/anime/1171/Slayers_Excellent", 
-      :title      =>  "Slayers Excellent", 
-      :type       =>  "OVA", 
-      :series     =>  "3", 
-      :image_url  =>  "http://myanimelist.net/anime/1171/Slayers_Excellent/pic&pid=34993",
-      :airing     =>  "finished"
+      #:web_url    =>  "http://myanimelist.net/anime/1171/Slayers_Excellent", 
+      :title      =>  "Превосходные Рубаки", 
+      #:type       =>  "OVA", 
+      #:series     =>  "3", 
+      :image_url  =>  "http://www.world-art.ru/animation/img/1000/203/1.jpg",
+      #:airing     =>  "finished"
     }])
   end
   
@@ -59,15 +59,15 @@ describe Nyanimefinder::WorldArt do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
-      :title      =>  "Shingeki no Kyojin",
-      :type       =>  "TV", 
-      :series     =>  "25", 
-      :image_url  =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin/pic&pid=47347",
-      :airing     =>  "currently",
-      :other_titles => { 
-        "English" => "Attack on Titan"
-      }
+      #:web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
+      :title      =>  "Вторжение гигантов",
+      #:type       =>  "TV", 
+      #:series     =>  "25", 
+      :image_url  =>  "http://www.world-art.ru/animation/img/2000/1245/1.jpg",
+      #:airing     =>  "currently",
+      #:other_titles => { 
+      #  "English" => "Attack on Titan"
+      #}
     }])
   end
 end

@@ -60,12 +60,12 @@ module Nyanimefinder
         end
         
         animes << {
-          :web_url    => web_url,
-          :title      => link.text,
-          :type       => type,
-          :series     => series,
-          :year       => match[1],
-          :country    => match[2]
+          web_url: web_url,
+          title:   link.text,
+          type:    type,
+          series:  series,
+          year:    match[1],
+          country: match[2]
         }
       end
       
@@ -75,7 +75,43 @@ module Nyanimefinder
     def parse_single_result html
       doc  = Nokogiri::HTML(html)
       
-      return nil
+      content_table = nil
+      
+      doc.css('html>body table').each do |table|
+        header = table.css('table>tr>td.bg2')
+        if header != nil then
+          info = header.select { |h| h.text != '' }
+          if info != nil and info.count > 0 then
+            if /Основная информация:/.match(info[0].text) != nil then
+              # this is good table
+              content_table = table
+            end
+          end
+        end
+      end
+      
+      if content_table == nil then
+        return nil
+      end
+      
+      data_table = content_table.css('table').select { |t| 
+        t.css('tr td a').select { |a| 
+          /^http:\/\/www\.world-art\.ru\/animation\/animation_poster\.php\?id=/.match(a['href'])
+        }.count > 0 
+      }
+      
+      if data_table == nil or data_table.count == 0
+        return nil
+      end
+      
+      data = data_table.first
+      
+      anime = {
+        title:      data.css('tr td font')[0].text.gsub(/ \[/, ''),
+        image_url:  data.css('tr td a img')[0]['src']
+      }
+      
+      return [anime]
     end
 
   end
