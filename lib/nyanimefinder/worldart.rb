@@ -106,9 +106,19 @@ module Nyanimefinder
       
       data = data_table.first
       
+      titles = []
+      begin
+        titles = data.css('tr')[1].css('td')[2].to_s.split( /<br>/ ).select { |title| 
+          title != '' and /</.match(title) == nil
+        }
+      rescue
+        titles = []
+      end
+      
       anime = {
-        title:      data.css('tr td font')[0].text.gsub(/ \[/, ''),
-        image_url:  data.css('tr td a img')[0]['src']
+        title:        data.css('tr td font')[0].text.gsub(/ \[/, ''),
+        image_url:    data.css('tr td a img')[0]['src'],
+        other_titles: titles
       }
       
       return [anime]

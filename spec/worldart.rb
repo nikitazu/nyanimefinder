@@ -50,6 +50,13 @@ describe Nyanimefinder::WorldArt do
       #:series     =>  "3", 
       :image_url  =>  "http://www.world-art.ru/animation/img/1000/203/1.jpg",
       #:airing     =>  "finished"
+      :other_titles => [
+        "Slayers Excellent",
+        "Slayers: Lina-chan's Great Fashion Strategy",
+        "Slayers: The Fearful Future",
+        "Slayers: The Labyrinth",
+        "スレイヤーズえくせれんと"
+      ]
     }])
   end
   
@@ -65,9 +72,12 @@ describe Nyanimefinder::WorldArt do
       #:series     =>  "25", 
       :image_url  =>  "http://www.world-art.ru/animation/img/2000/1245/1.jpg",
       #:airing     =>  "currently",
-      #:other_titles => { 
-      #  "English" => "Attack on Titan"
-      #}
+      :other_titles => [
+        "Attack on Titan",
+        "Shingeki no Kyojin",
+        "Вторжение титанов",
+        "Атака титанов",
+      ]
     }])
   end
 end
