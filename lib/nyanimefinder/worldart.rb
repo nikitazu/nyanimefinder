@@ -115,8 +115,45 @@ module Nyanimefinder
         titles = []
       end
       
+      fonts = data.css('tr td font')
+      
+      type_and_series = fonts[3].text
+      
+      country = ''
+      mcountry = /Производство:\p{Blank}*(\p{Any}+)Жанр:/.match(type_and_series)
+      if mcountry != nil then
+        country = mcountry[1].strip
+      end
+      
+      type = ''
+      series = ''
+      time = ''
+      mtype = /Тип: (\p{Any}+), (\d+) мин.(Выпуск|Премьера):/.match(type_and_series)
+      if mtype != nil
+        type = mtype[1]
+        if type == 'полнометражный фильм' or type == 'короткометражный фильм' then
+          type = 'Movie'
+          series = '1'
+        else
+          tsmatch = /(\p{Word}+) \((\d+) эп.\)/.match(type)
+          if tsmatch != nil then
+            type = tsmatch[1]
+            series = tsmatch[2]
+            if type == 'ТВ' then type = 'TV' end
+          end
+        end
+        time = mtype[2]
+      end
+      
+      #/Выпуск: c 07.04.2013/
+      #/Выпуск: c 25.10.1998 по  25.03.1999/
+      
       anime = {
-        title:        data.css('tr td font')[0].text.gsub(/ \[/, ''),
+        title:        fonts[0].text.gsub(/ \[/, ''),
+        type:         type,
+        series:       series, 
+        year:         fonts[1].text,
+        country:      country,
         image_url:    data.css('tr td a img')[0]['src'],
         other_titles: titles
       }

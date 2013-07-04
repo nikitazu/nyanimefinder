@@ -34,7 +34,7 @@ describe Nyanimefinder::WorldArt do
     ])
   end
   
-  it 'single result should be parsed as list of maps too' do
+  it 'single result OVA' do
     # myanimelist.net behaves smartassy for its users
     # when result is single item it opens anime main page
     # instead of search results list
@@ -46,8 +46,10 @@ describe Nyanimefinder::WorldArt do
     result.should eql([{
       #:web_url    =>  "http://myanimelist.net/anime/1171/Slayers_Excellent", 
       :title      =>  "Превосходные Рубаки", 
-      #:type       =>  "OVA", 
-      #:series     =>  "3", 
+      :type       =>  "OVA", 
+      :series     =>  "3", 
+      :year       =>  "1998",
+      :country    =>  "Япония",
       :image_url  =>  "http://www.world-art.ru/animation/img/1000/203/1.jpg",
       #:airing     =>  "finished"
       :other_titles => [
@@ -60,7 +62,7 @@ describe Nyanimefinder::WorldArt do
     }])
   end
   
-  it 'single result should be parsed as list of maps with additional info' do
+  it 'single result TV airing' do
     html = File.read File.join HERE, 'worldart_single2.html'
     finder = Nyanimefinder::WorldArt.new
     result = finder.parse_single_result html
@@ -68,8 +70,10 @@ describe Nyanimefinder::WorldArt do
     result.should eql([{
       #:web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
       :title      =>  "Вторжение гигантов",
-      #:type       =>  "TV", 
-      #:series     =>  "25", 
+      :type       =>  "TV", 
+      :series     =>  "25", 
+      :year       =>  "2013",
+      :country    =>  "Япония",
       :image_url  =>  "http://www.world-art.ru/animation/img/2000/1245/1.jpg",
       #:airing     =>  "currently",
       :other_titles => [
@@ -77,6 +81,31 @@ describe Nyanimefinder::WorldArt do
         "Shingeki no Kyojin",
         "Вторжение титанов",
         "Атака титанов",
+      ]
+    }])
+  end
+  
+  it 'single result MOVIE' do
+    html = File.read File.join HERE, 'worldart_single3.html'
+    finder = Nyanimefinder::WorldArt.new
+    result = finder.parse_single_result html
+    result.should_not be_nil
+    result.should eql([{
+      #:web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
+      :title      =>  "Рубаки на большом экране",
+      :type       =>  "Movie", 
+      :series     =>  "1", 
+      :year       =>  "1995",
+      :country    =>  "Япония",
+      :image_url  =>  "http://www.world-art.ru/animation/img/1000/199/1.jpg",
+      #:airing     =>  "currently",
+      :other_titles => [
+        "Slayers: The Motion Picture",
+        "Gekijouban Slayers",
+        "Slayers - The Motion Picture",
+        "Slayers Perfect",
+        "Slayers Movie 1",
+        "スレイヤーズ",
       ]
     }])
   end
