@@ -3,6 +3,9 @@ require "nyanimefinder/version"
 require 'nokogiri'
 require 'net/http'
 
+#http://www.world-art.ru/search.php?public_search=slayers&global_sector=animation
+
+
 module Nyanimefinder
   class WorldArt
     
