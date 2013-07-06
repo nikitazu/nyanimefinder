@@ -1,4 +1,5 @@
 require 'nyanimefinder/myanimelist'
+require 'date'
 
 HERE = File.dirname(File.expand_path(__FILE__))
 
@@ -86,8 +87,8 @@ describe Nyanimefinder::MyAnimeList do
       :series     =>  "3", 
       :image_url  =>  "http://cdn.myanimelist.net/images/anime/8/34993.jpg",
       :airing     =>  "finished",
-      :airing_start => "25.10.1998",
-      :airing_end   => "25.03.1999",
+      :airing_start => DateTime.new(1998, 10, 25),
+      :airing_end   => DateTime.new(1999,  3, 25),
     }])
   end
   
@@ -103,7 +104,7 @@ describe Nyanimefinder::MyAnimeList do
       :series     =>  "25", 
       :image_url  =>  "http://cdn.myanimelist.net/images/anime/10/47347.jpg",
       :airing     =>  "currently",
-      :airing_start => "07.04.2013",
+      :airing_start => DateTime.new(2013, 4, 7),
       :airing_end   => nil,
       :other_titles => [ "Attack on Titan" ]
     }])
@@ -123,7 +124,7 @@ describe Nyanimefinder::MyAnimeList do
       #:country    =>  "Япония",
       :image_url  =>  "http://cdn.myanimelist.net/images/anime/10/2644.jpg",
       :airing     =>  "finished",
-      :airing_start => "29.07.1995",
+      :airing_start => DateTime.new(1995, 7, 29),
       :airing_end   => nil,
       :other_titles => [
         "Slayers: The Motion Picture",

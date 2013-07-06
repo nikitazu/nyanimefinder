@@ -1,7 +1,7 @@
 require "nyanimefinder/version"
 require 'nokogiri'
 require 'net/http'
-require 'date'
+require 'dateformat'
 
 module Nyanimefinder
   class MyAnimeList
@@ -73,13 +73,8 @@ module Nyanimefinder
         
       if airing != nil then
         airing_data = airing.gsub(/Aired: /, '').split('to').map { |x| x.strip }
-        airing_start = DateTime.strptime(airing_data[0], '%b %d, %Y').strftime('%d.%m.%Y')
-        airing_end = airing_data[1]
-        if airing_end == nil or airing_end == '?' then
-          airing_end = nil
-        else
-          airing_end = DateTime.strptime(airing_end, '%b %d, %Y').strftime('%d.%m.%Y')
-        end
+        airing_start = Dateformat.from_myanimelist(airing_data[0])
+        airing_end = Dateformat.from_myanimelist(airing_data[1])
       end
       
       anime = {

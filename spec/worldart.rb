@@ -51,8 +51,8 @@ describe Nyanimefinder::WorldArt do
       :year       =>  "1998",
       :country    =>  "Япония",
       :image_url  =>  "http://www.world-art.ru/animation/img/1000/203/1.jpg",
-      :airing_start => "25.10.1998",
-      :airing_end   => "25.03.1999",
+      :airing_start => DateTime.new(1998, 10, 25),
+      :airing_end   => DateTime.new(1999,  3, 25),
       :other_titles => [
         "Slayers Excellent",
         "Slayers: Lina-chan's Great Fashion Strategy",
@@ -76,7 +76,7 @@ describe Nyanimefinder::WorldArt do
       :year       =>  "2013",
       :country    =>  "Япония",
       :image_url  =>  "http://www.world-art.ru/animation/img/2000/1245/1.jpg",
-      :airing_start => "07.04.2013",
+      :airing_start => DateTime.new(2013, 4, 7),
       :airing_end   => nil,
       :other_titles => [
         "Attack on Titan",
@@ -100,7 +100,7 @@ describe Nyanimefinder::WorldArt do
       :year       =>  "1995",
       :country    =>  "Япония",
       :image_url  =>  "http://www.world-art.ru/animation/img/1000/199/1.jpg",
-      :airing_start => "29.07.1995",
+      :airing_start => DateTime.new(1995, 7, 29),
       :airing_end   => nil,
       :other_titles => [
         "Slayers: The Motion Picture",

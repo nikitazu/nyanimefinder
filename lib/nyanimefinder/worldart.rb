@@ -2,6 +2,7 @@
 require "nyanimefinder/version"
 require 'nokogiri'
 require 'net/http'
+require 'dateformat'
 
 #http://www.world-art.ru/search.php?public_search=slayers&global_sector=animation
 
@@ -157,8 +158,8 @@ module Nyanimefinder
       end
       
       if mairing != nil then
-        airing_start = mairing[1]
-        airing_end = mairing[2]
+        airing_start = Dateformat.from_worldart(mairing[1])
+        airing_end = Dateformat.from_worldart(mairing[2])
       end
       
       image_url = data.css('tr td a img')[0]['src']
