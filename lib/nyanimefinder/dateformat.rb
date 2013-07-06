@@ -17,5 +17,21 @@ module Nyanimefinder
     def self.to_ru(dt)
       dt.strftime '%d.%m.%Y'
     end
+    
+    def self.from_worldart(str)
+      begin
+        self.from_ru str
+      rescue
+        nil
+      end
+    end
+    
+    def self.from_myanimelist(str)
+      begin
+        self.from_en str
+      rescue
+        nil
+      end
+    end
   end
 end
