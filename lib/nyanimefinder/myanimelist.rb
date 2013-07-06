@@ -60,13 +60,11 @@ module Nyanimefinder
       content = doc.css('html>body>div#myanimelist>div#contentWrapper')
       title = content.css('h1')[0].text.gsub! /^Ranked #\d+/i, ''
       data = content.css('div#content>table>tr>td')[0].text
-      image_url = content.css('div#content>table>tr>td>div>a')[0].attr('href')
-      web_url = image_url.gsub /\/pic&pid=\d+/i, ''
+      image_url = content.css('div#content>table>tr>td>div img')[0]['src']
       
       match = /Type: (\w+)\s+Episodes: (\d+)\s+Status: (Finished Airing|Currently Airing|Not Yet Aired)/.match(data)
       
       anime = {
-        web_url: web_url,
         title: title,
         type: match[1],
         series: match[2],

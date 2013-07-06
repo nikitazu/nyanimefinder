@@ -80,11 +80,11 @@ describe Nyanimefinder::MyAnimeList do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://myanimelist.net/anime/1171/Slayers_Excellent", 
+      #:web_url    =>  "http://myanimelist.net/anime/1171/Slayers_Excellent", 
       :title      =>  "Slayers Excellent", 
       :type       =>  "OVA", 
       :series     =>  "3", 
-      :image_url  =>  "http://myanimelist.net/anime/1171/Slayers_Excellent/pic&pid=34993",
+      :image_url  =>  "http://cdn.myanimelist.net/images/anime/8/34993.jpg",
       :airing     =>  "finished"
     }])
   end
@@ -95,11 +95,11 @@ describe Nyanimefinder::MyAnimeList do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
+      #:web_url    =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin", 
       :title      =>  "Shingeki no Kyojin",
       :type       =>  "TV", 
       :series     =>  "25", 
-      :image_url  =>  "http://myanimelist.net/anime/16498/Shingeki_no_Kyojin/pic&pid=47347",
+      :image_url  =>  "http://cdn.myanimelist.net/images/anime/10/47347.jpg",
       :airing     =>  "currently",
       :other_titles => { 
         "English" => "Attack on Titan"
@@ -113,13 +113,14 @@ describe Nyanimefinder::MyAnimeList do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://myanimelist.net/anime/536/Slayers:_The_Motion_Picture", 
+      #:web_url    =>  "http://myanimelist.net/anime/536/Slayers:_The_Motion_Picture", 
       :title      =>  "Slayers: The Motion Picture",
       :type       =>  "Movie", 
       :series     =>  "1", 
       #:year       =>  "1995",
       #:country    =>  "Япония",
       :image_url  =>  "http://cdn.myanimelist.net/images/anime/10/2644.jpg",
+      :airing     =>  "finished",
       #:airing_start => "29.07.1995",
       #:airing_end   => nil,
       :other_titles => {
