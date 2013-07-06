@@ -16,8 +16,13 @@ module Nyanimefinder
         raise "Unknown SOURCE: #{source}! Choose between [myanimelist] and [worldart]"
       end
       
-      data = finder.find args
-      puts data
+      animes = finder.find args
+      animes.each do |anime|
+        anime.each do |key, value|
+          printf "%10s => %s\n", key, value
+        end
+        puts
+      end
     end
   end
 end
