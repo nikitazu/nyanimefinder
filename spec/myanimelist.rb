@@ -101,9 +101,7 @@ describe Nyanimefinder::MyAnimeList do
       :series     =>  "25", 
       :image_url  =>  "http://cdn.myanimelist.net/images/anime/10/47347.jpg",
       :airing     =>  "currently",
-      :other_titles => { 
-        "English" => "Attack on Titan"
-      }
+      :other_titles => [ "Attack on Titan" ]
     }])
   end
   
@@ -123,9 +121,12 @@ describe Nyanimefinder::MyAnimeList do
       :airing     =>  "finished",
       #:airing_start => "29.07.1995",
       #:airing_end   => nil,
-      :other_titles => {
-        "English" => "Slayers: The Motion PictureSynonyms: Slayers Perfect, Gekijouban Slayers, Slayers Movie 1"
-      }
+      :other_titles => [
+        "Slayers: The Motion Picture",
+        "Slayers Perfect",
+        "Gekijouban Slayers",
+        "Slayers Movie 1",
+      ]
     }])
   end
 end

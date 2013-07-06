@@ -74,7 +74,8 @@ module Nyanimefinder
       
       other_title = /English: (.+)Japanese:/.match(data)
       if other_title != nil then
-        anime[:other_titles] = { "English" => other_title[1] }
+        titles = other_title[1].gsub(/Synonyms: /, ',').split(',').map { |title| title.strip }
+        anime[:other_titles] = titles
       end
       
       return [anime]
