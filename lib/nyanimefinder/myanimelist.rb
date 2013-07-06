@@ -1,6 +1,7 @@
 require "nyanimefinder/version"
 require 'nokogiri'
 require 'net/http'
+require 'date'
 
 module Nyanimefinder
   class MyAnimeList
@@ -64,12 +65,31 @@ module Nyanimefinder
       
       match = /Type: (\w+)\s+Episodes: (\d+)\s+Status: (Finished Airing|Currently Airing|Not Yet Aired)/.match(data)
       
+      airing_start = ''
+      airing_end = ''
+      airing = content.css('div#content>table>tr>td>div.spaceit')
+        .map    { |div| div.text }
+        .select { |text| /Aired:/.match(text) }[0]
+        
+      if airing != nil then
+        airing_data = airing.gsub(/Aired: /, '').split('to').map { |x| x.strip }
+        airing_start = DateTime.strptime(airing_data[0], '%b %d, %Y').strftime('%d.%m.%Y')
+        airing_end = airing_data[1]
+        if airing_end == nil or airing_end == '?' then
+          airing_end = nil
+        else
+          airing_end = DateTime.strptime(airing_end, '%b %d, %Y').strftime('%d.%m.%Y')
+        end
+      end
+      
       anime = {
         title: title,
         type: match[1],
         series: match[2],
         image_url: image_url,
-        airing: match[3].split(' ').first.downcase
+        airing: match[3].split(' ').first.downcase,
+        airing_start: airing_start,
+        airing_end: airing_end
       }
       
       other_title = /English: (.+)Japanese:/.match(data)
