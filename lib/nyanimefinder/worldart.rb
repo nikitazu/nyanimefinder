@@ -145,8 +145,21 @@ module Nyanimefinder
         time = mtype[2]
       end
       
-      #/Выпуск: c 07.04.2013/
-      #/Выпуск: c 25.10.1998 по  25.03.1999/
+      airing_start = nil
+      airing_end = nil
+      
+      mairing = /Выпуск: c (\d\d\.\d\d\.\d\d\d\d) по  (\d\d\.\d\d\.\d\d\d\d)/.match(type_and_series)
+      if mairing == nil then
+        mairing = /Выпуск: c (\d\d\.\d\d\.\d\d\d\d)/.match(type_and_series)
+        if mairing == nil then
+          mairing = /Премьера: (\d\d\.\d\d\.\d\d\d\d)/.match(type_and_series)
+        end
+      end
+      
+      if mairing != nil then
+        airing_start = mairing[1]
+        airing_end = mairing[2]
+      end
       
       anime = {
         title:        fonts[0].text.gsub(/ \[/, ''),
@@ -155,6 +168,8 @@ module Nyanimefinder
         year:         fonts[1].text,
         country:      country,
         image_url:    data.css('tr td a img')[0]['src'],
+        airing_start: airing_start,
+        airing_end:   airing_end,
         other_titles: titles
       }
       
