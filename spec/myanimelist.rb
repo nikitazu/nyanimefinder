@@ -70,7 +70,7 @@ describe Nyanimefinder::MyAnimeList do
     ])
   end
   
-  it 'single result should be parsed as list of maps too' do
+  it 'single result OVA' do
     # myanimelist.net behaves smartassy for its users
     # when result is single item it opens anime main page
     # instead of search results list
@@ -89,7 +89,7 @@ describe Nyanimefinder::MyAnimeList do
     }])
   end
   
-  it 'single result should be parsed as list of maps with additional info' do
+  it 'single result TV airing' do
     html = File.read File.join HERE, 'myanimelist_single2.html'
     finder = Nyanimefinder::MyAnimeList.new
     result = finder.parse_single_result html
@@ -103,6 +103,27 @@ describe Nyanimefinder::MyAnimeList do
       :airing     =>  "currently",
       :other_titles => { 
         "English" => "Attack on Titan"
+      }
+    }])
+  end
+  
+  it 'single result MOVIE' do
+    html = File.read File.join HERE, 'myanimelist_single3.html'
+    finder = Nyanimefinder::MyAnimeList.new
+    result = finder.parse_single_result html
+    result.should_not be_nil
+    result.should eql([{
+      :web_url    =>  "http://myanimelist.net/anime/536/Slayers:_The_Motion_Picture", 
+      :title      =>  "Slayers: The Motion Picture",
+      :type       =>  "Movie", 
+      :series     =>  "1", 
+      #:year       =>  "1995",
+      #:country    =>  "Япония",
+      :image_url  =>  "http://cdn.myanimelist.net/images/anime/10/2644.jpg",
+      #:airing_start => "29.07.1995",
+      #:airing_end   => nil,
+      :other_titles => {
+        "English" => "Slayers: The Motion PictureSynonyms: Slayers Perfect, Gekijouban Slayers, Slayers Movie 1"
       }
     }])
   end
