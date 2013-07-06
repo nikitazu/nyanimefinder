@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'nyanimefinder/cli'
+Nyanimefinder::CLI.start
+

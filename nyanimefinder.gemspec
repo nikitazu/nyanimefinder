@@ -28,6 +28,13 @@ Gem::Specification.new do |spec|
   # unit testing
   spec.add_development_dependency 'rspec', '~> 2.6'
   
+  # cli testing
+  spec.add_development_dependency 'cucumber', '~> 1.3'
+  spec.add_development_dependency 'aruba', '~> 0.5'
+  
   # web scraping
-  spec.add_dependency 'nokogiri', '~>1.5'
+  spec.add_dependency 'nokogiri', '~> 1.5'
+  
+  # cli
+  spec.add_dependency "thor", '~> 0.18'
 end

@@ -1,28 +1,18 @@
 # encoding=utf-8
 require "nyanimefinder/version"
+require 'nyanimefinder/dateformat'
+require 'nyanimefinder/finder'
 require 'nokogiri'
 require 'net/http'
-require 'dateformat'
 
 #http://www.world-art.ru/search.php?public_search=slayers&global_sector=animation
 
 
 module Nyanimefinder
-  class WorldArt
+  class WorldArt < Finder
     
-    def search_anime query
-      url      = "http://myanimelist.net/anime.php?q=#{query}"
-      response = Net::HTTP.get_response(URI.parse(url))
-      
-      if response.code == '302'
-        # if we got here, then we got single result
-        # and were redirected to a page with anime
-        redirect = URI.parse(response.header['location'])
-        response = Net::HTTP.get_response(redirect)
-        return parse_single_result response.body
-      else
-        return parse_multi_result response.body
-      end
+    def initialize
+      @query = 'http://www.world-art.ru/search.php?global_sector=animation&public_search='
     end
     
     def parse_multi_result html

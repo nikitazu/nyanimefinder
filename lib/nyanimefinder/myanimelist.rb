@@ -1,24 +1,15 @@
+# encoding=utf-8
 require "nyanimefinder/version"
+require 'nyanimefinder/dateformat'
+require 'nyanimefinder/finder'
 require 'nokogiri'
 require 'net/http'
-require 'dateformat'
 
 module Nyanimefinder
-  class MyAnimeList
+  class MyAnimeList < Finder
     
-    def search_anime query
-      url      = "http://myanimelist.net/anime.php?q=#{query}"
-      response = Net::HTTP.get_response(URI.parse(url))
-      
-      if response.code == '302'
-        # if we got here, then we got single result
-        # and were redirected to a page with anime
-        redirect = URI.parse(response.header['location'])
-        response = Net::HTTP.get_response(redirect)
-        return parse_single_result response.body
-      else
-        return parse_multi_result response.body
-      end
+    def initialize
+      @query = 'http://myanimelist.net/anime.php?q='
     end
     
     def parse_multi_result html
