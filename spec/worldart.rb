@@ -44,7 +44,7 @@ describe Nyanimefinder::WorldArt do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://www.world-art.ru/animation/animation.php?id=203", 
+      #:web_url    =>  "http://www.world-art.ru/animation/animation.php?id=203", 
       :title      =>  "Превосходные Рубаки", 
       :type       =>  "OVA", 
       :series     =>  "3", 
@@ -69,7 +69,7 @@ describe Nyanimefinder::WorldArt do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://www.world-art.ru/animation/animation.php?id=1245", 
+      #:web_url    =>  "http://www.world-art.ru/animation/animation.php?id=1245", 
       :title      =>  "Вторжение гигантов",
       :type       =>  "TV", 
       :series     =>  "25", 
@@ -93,7 +93,7 @@ describe Nyanimefinder::WorldArt do
     result = finder.parse_single_result html
     result.should_not be_nil
     result.should eql([{
-      :web_url    =>  "http://www.world-art.ru/animation/animation.php?id=199", 
+      #:web_url    =>  "http://www.world-art.ru/animation/animation.php?id=199", 
       :title      =>  "Рубаки на большом экране",
       :type       =>  "Movie", 
       :series     =>  "1", 

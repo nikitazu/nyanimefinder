@@ -163,11 +163,11 @@ module Nyanimefinder
       
       image_url = data.css('tr td a img')[0]['src']
       poster_url = data.css('tr td a')[0]['href']
-      anime_id = /animation_poster\.php\?id=(\d+)/.match(poster_url)[1]
-      web_url = "http://www.world-art.ru/animation/animation.php?id=#{anime_id}"
+      #anime_id = /animation_poster\.php\?id=(\d+)/.match(poster_url)[1]
+      #web_url = "http://www.world-art.ru/animation/animation.php?id=#{anime_id}"
       
       anime = {
-        web_url:      web_url,
+        #web_url:      web_url,
         title:        fonts[0].text.gsub(/ \[/, ''),
         type:         type,
         series:       series, 
